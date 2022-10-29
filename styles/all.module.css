@@ -1,0 +1,150 @@
+.base{
+    width: 100vw;
+    height: 200vh;
+    /* border:2px solid black; */
+    /* background-color: yellow; */
+    filter: blur(3px);
+    background-image: linear-gradient(to left top, #ffff12, #f4bb1d, #d17f30, #9b4f35, #5b2c2b, #5b2c2b,  #5b2c2b, #9b4f34, #d27f2f, #f5bb18, #ffff00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top:0;
+    z-index: -1;
+}
+
+.head{
+    /* border: 2px solid black; */
+    font-size: 22px;
+    color: white;
+    /* background-color: rgba(245, 245, 245, 0.1); */
+    /* margin: auto; */
+    text-align: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* display: inline; */
+    /* border-radius: 5px; */
+    /* padding: 3px; */
+}
+.homeLink{
+    color:black;
+    font-size: 18px;
+    background-color: aliceblue;
+    padding: 3px 10px;
+    margin:0px 20px ;
+}
+.cardBox{
+    /* border:2px solid white; */
+    padding: 0px 5%;
+    display: grid;
+    grid-template-columns:30% 30% 30%;
+    justify-content: space-evenly;
+}
+
+.card{
+    /* background-color: rgba(153, 205, 50, 0.395); */
+    /* background-color: #9b4f347b; */
+    /* border:3px solid yellow; */
+    color: white;
+    /* font-size: 20px; */
+    /* padding: 10px 25px; */
+    height:300px;
+    margin:20px;
+}
+
+.primary{
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary div{
+    width:100%;
+    height: 80%;
+    opacity: 0.75;
+}
+.primary p{
+font-size: 60px;
+/* line-height: 60px; */
+margin: 0px;
+}
+.primary h2{
+    font-size: 22px;
+    text-align: center;
+}
+
+.secondary{
+    padding: 10px 25px;
+}
+
+.secondary h2{
+    font-size: 26px;
+
+}
+.secondary p{
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+
+.paginationBox{
+    margin-top: 60px;
+    /* border:2px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page{
+    width: 40px;
+    height:40px;
+    /* background-color: gainsboro; */
+    background-color:rgba(250, 235, 215, 0.71);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+/* .searchBox{ */
+    /* border:2px solid black; */
+/* } */
+
+.inputBox{
+    border:3px solid green;
+    width:70%;
+    margin: auto;
+    height: 50px;
+    border-radius: 100px;
+    background-color: white;
+}
+
+.inputBox input{
+    text-align: center;
+    width: 85%;
+    height: 100%;
+    margin-left: 23px ;
+    border:none;
+    outline: none;
+    font-size: 22px;
+}
+
+.filterBox{
+    /* border:2px solid yellow; */
+    margin:10px auto;
+    text-align: center;
+}
+
+.filterBox label{
+    /* border:2px solid red; */
+    margin:5px 20px;
+    font-size: 16px;
+    color: whitesmoke;
+    text-transform: uppercase;
+}
+.filterBox select{
+    margin: 0px 10px;
+}
