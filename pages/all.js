@@ -9,7 +9,8 @@ function All({ data }) {
     const [allBrew, setAllBrew] = useState(data)
     const [page, setPage] = useState(1)
     
-    const defaultCity = ['All', 'new_york', 'los_angeles', 'phoenix', 'chicago', 'colorado'];
+    const cityData = data.map(brew=>brew.city.toLowerCase())
+    const defaultCity =  cityData.filter((item,index) => cityData.indexOf(item) === index);
     
     const defaultType = ['All', 'micro', 'nano', 'regional', 'brewpub', 'large', 'planning', 'bar', 'contract', 'proprietor', 'closed'];
     
@@ -19,14 +20,10 @@ function All({ data }) {
     
     
     const filterData = () => {
-        
         let filterdData = data.filter(brew => {
             if (brew.name.toLowerCase().indexOf(name.trim().toLowerCase()) >= 0 || name == "") {
-                if (type == "All" || type == brew.brewery_type) {
-                    if (city == "All" || city == brew.city) {
+                if ((type == "All" || type == brew.brewery_type)&&(city == "All" || city == brew.city.toLowerCase()))  {  
                         return true;
-                    }
-                    return false;
                 }
                 return false;
             }
@@ -51,7 +48,7 @@ function All({ data }) {
     },[allBrew]);
     
     
-    let cityOptions = defaultCity.map(value => <option key={value} value={value} >{value.replace(/_/g, ' ')}</option>)
+    let cityOptions = defaultCity.map(value => <option key={value} value={value} >{value}</option>)
     let typeOptions = defaultType.map(value => <option key={value} value={value} >{value}</option>)
     
     const pageCount = allBrew.length / 9;
@@ -100,6 +97,7 @@ function All({ data }) {
                     <label>
                         Select City
                         <select name='city' id='city' value={city} onChange={(e) => setCity(e.target.value)}>
+                        <option key='All' value="All" >All</option>
                             {cityOptions}
                         </select>
                     </ label>
