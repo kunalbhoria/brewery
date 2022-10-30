@@ -1,29 +1,41 @@
 import Head from 'next/head'
 // import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
-import { useState, useEffect } from 'react';
-
+import { useState } from 'react';
+import axios from 'axios';
 import Link from 'next/link';
-import styles from '../styles/style.module.css'
+import styles from '../styles/style.module.css';
+
 
 export default function Home({ randomData }) {
 
-  const [randomBrew , setRandomBrew] = useState(randomData)
+  const [randomBrew, setRandomBrew] = useState(randomData)
 
-  const handleClick = async()=>{
-    let randomReq = await fetch(`https://api.openbrewerydb.org/breweries/random`)
-    const randomBrew = await randomReq.json();
-    setRandomBrew(randomBrew)
-   
+
+  const fetchData = async () => {
+
+    const req = await fetch('https://api.openbrewerydb.org/breweries/random');
+    const newData = await req.json();
+    // console.log(newData)
+    setRandomBrew(newData);
+  };
+
+
+  const handleClick = async (e) => {
+    try {
+      e.preventDefault();
+      fetchData();
+    } catch (error) {
+    }
   }
 
   return (
     <>
-    <Head>
-    <title>Cheer With Us</title>
-            <meta name="description" content="Find all breweries list. All information about breweries you want is here. Find a surprise for you. " />
-            <link rel="canonical" href="/" />
-    </Head>
+      <Head>
+        <title>Cheer With Us</title>
+        <meta name="description" content="Find all breweries list. All information about breweries you want is here. Find a surprise for you. " />
+        <link rel="canonical" href="/" />
+      </Head>
       <div>
         <div className={styles.base}>
         </div>
@@ -31,10 +43,10 @@ export default function Home({ randomData }) {
           <div className={styles.center}>
             <div className={styles.nav}>
               <Link href='/all'>
-             🍻 SHOW ALL
+                🍻 SHOW ALL
               </Link>
               <p onClick={handleClick}>
-             🍺 SURPRISE ME
+                🍺 SURPRISE ME
               </p>
             </div>
             <div className={styles.dataBox}>
@@ -43,7 +55,7 @@ export default function Home({ randomData }) {
               <p className={styles.type} >{randomBrew[0].brewery_type}</p>
               <a href={randomBrew[0].website_url}>{randomBrew[0].website_url}</a>
               {/* <p className={styles.beer}>🍻</p> */}
-              <img className={styles.beer} src='/beer4.png' />
+              <img alt='beer img' className={styles.beer} src='/beer4.png' />
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ function All({ data }) {
     const filterData = () => {
         
         let filterdData = data.filter(brew => {
-            if (brew.name.toLowerCase().indexOf(name.toLowerCase()) >= 0 || name == "") {
+            if (brew.name.toLowerCase().indexOf(name.trim().toLowerCase()) >= 0 || name == "") {
                 if (type == "All" || type == brew.brewery_type) {
                     if (city == "All" || city == brew.city) {
                         return true;
@@ -31,24 +31,24 @@ function All({ data }) {
                 return false;
             }
         });
-        console.log(filterdData)
+        // console.log(filterdData)
         
         setAllBrew(filterdData);
         
-    }
+    };
     
     useEffect(() => {
         
         filterData();
         
-    },[name,type,city])
+    },[name,type,city]);
     
     
     
     useEffect(()=>{
         
         page>1 && setPage(1)
-    },[allBrew])
+    },[allBrew]);
     
     
     let cityOptions = defaultCity.map(value => <option key={value} value={value} >{value.replace(/_/g, ' ')}</option>)
@@ -69,11 +69,11 @@ function All({ data }) {
             allBrew[n] && namecard.push(<Card key={allBrew[n].id} randomNumber={randomNumber} brew={allBrew[n]} />);
         } else {
             let i = n + (page - 1) * 9
-            allBrew[i] && namecard.push(<Card key={allBrew[i].id} brew={allBrew[i]} />);
+            allBrew[i] && namecard.push(<Card key={allBrew[i].id} randomNumber={randomNumber} brew={allBrew[i]} />);
         }
     }
     //  allBrew.map(brew => <Card key={brew.id} brew={brew} />);
-    console.log(page)
+    // console.log(page)
     return (
         <>
         <Head>
@@ -93,7 +93,7 @@ function All({ data }) {
 
             <div className={styles.searchBox}>
                 <div className={styles.inputBox}>
-                    <input type='text' value={name} placeholder='Search here ....' onChange={(e) => setName(e.target.value.trim())} />
+                    <input type='text' value={name} placeholder='Search here ....' onChange={(e) => setName(e.target.value)} />
                 </div>
                 <div className={styles.filterBox}>
 
@@ -141,7 +141,7 @@ export async function getServerSideProps(context) {
     } catch (error) {
         console.log(error)
         return {
-            props: { randomBrew: [], data: [] }
+            props: {  data: [] }
         }
     }
 }
