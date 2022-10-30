@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import styles from '../styles/all.module.css';
-import Card from '../component/card';
+import Card from '/component/card';
 import Link from 'next/link';
 import Head from 'next/head';
 
